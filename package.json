@@ -1,0 +1,31 @@
+{
+  "name": "fullnext",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start && knex migrate:latest",
+    "knex": "knex"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.27.0",
+    "dotenv-cli": "^4.0.0",
+    "formidable": "^1.2.2",
+    "fs": "0.0.1-security",
+    "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.14",
+    "moment": "^2.29.1",
+    "multer": "^1.4.3",
+    "multiparty": "^4.2.2",
+    "mysql": "^2.18.1",
+    "next": "10.0.3",
+    "next-connect": "^0.10.2",
+    "next-cookies": "^2.0.3",
+    "pg": "^8.7.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  }
+}
