@@ -25,14 +25,26 @@
 //    },
 // };
 
+// module.exports = {
+//     development: {
+//         client: 'pg',
+//         connection: {
+//             host: 'satao.db.elephantsql.com',
+//             user: 'lldlrqrb',
+//             password: 'F4Gi--hThPUnWZFY69aJREr09V4l2er7',
+//             database: 'lldlrqrb'
+//         }
+//    },
+// };
+
 module.exports = {
     development: {
         client: 'pg',
         connection: {
-            host: 'satao.db.elephantsql.com',
-            user: 'lldlrqrb',
-            password: 'F4Gi--hThPUnWZFY69aJREr09V4l2er7',
-            database: 'lldlrqrb'
+            host: '34.150.195.96',
+            user: 'postgres',
+            password: 'blokieno170',
+            database: 'postgres'
         }
    },
 };
