@@ -9,8 +9,17 @@
     "knex": "knex"
   },
   "dependencies": {
+    "@emotion/cache": "^11.4.0",
+    "@emotion/react": "^11.4.1",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
+    "@hookform/resolvers": "^2.8.0",
+    "@mui/icons-material": "^5.0.0",
+    "@mui/material": "^5.0.0",
     "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.1.1",
     "cloudinary": "^1.27.0",
+    "clsx": "^1.1.1",
     "dotenv-cli": "^4.0.0",
     "formidable": "^1.2.2",
     "fs": "0.0.1-security",
@@ -25,7 +34,10 @@
     "next-connect": "^0.10.2",
     "next-cookies": "^2.0.3",
     "pg": "^8.7.1",
+    "prop-types": "^15.7.2",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "^17.0.1",
+    "react-hook-form": "^7.15.3",
+    "yup": "^0.32.9"
   }
 }
