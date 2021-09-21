@@ -1,13 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// function MyApp({ Component, pageProps }) {
-//   return <Component {...pageProps} />
-// }
-
-// export default MyApp
-
-
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
@@ -16,6 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
 import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
+import DefaultTemplate from '../components/template/default'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -32,7 +25,9 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Component {...pageProps} />
+        <DefaultTemplate>
+          <Component {...pageProps} />
+        </DefaultTemplate>
       </ThemeProvider>
     </CacheProvider>
   );
