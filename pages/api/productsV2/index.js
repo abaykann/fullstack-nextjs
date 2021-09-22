@@ -13,8 +13,6 @@ export default async function handler(req, res) {
             // message: 'Product deleted successfully'
             code: 200,
             data:data
-            
-
         });
 
     }catch (err) {
