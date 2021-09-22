@@ -14,7 +14,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-
+import theme from '../../src/theme'
 const drawerWidth = 280;
 
 const openedMixin = (theme) => ({
@@ -135,11 +135,8 @@ export default function DefaultTemplate(props) {
 
 
       
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" primary open={open}>
         <DrawerHeader>
-          {/* <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton> */}
         </DrawerHeader>
       
         <List>
