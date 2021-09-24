@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import ValidationSchema from './validation';
+import ValidationSchema from '../../components/validation/productValidation';
 import ReactHookFormSelect from '../../components/dropdown/ReactHookFormSelect';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
