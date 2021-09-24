@@ -29,6 +29,7 @@ export default async function handler(req, res) {
         console.log(result)
 
         const deleteRow = await db('products').where({ id }).del();
+        if(!deleteRow) return res.status(404).end();
 
         res.status(200);
         res.json({
