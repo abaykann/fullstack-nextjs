@@ -15,6 +15,14 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import theme from '../../src/theme'
+import Link from 'next/link'
+import ListItemButton from '@mui/material/ListItemButton';
+import HomeIcon from '@mui/icons-material/Home';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+
+import DraftsIcon from '@mui/icons-material/Drafts';
+
+
 const drawerWidth = 280;
 
 const openedMixin = (theme) => ({
@@ -128,7 +136,7 @@ export default function DefaultTemplate(props) {
           </IconButton>
 
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            Abimayu Florist CMS
           </Typography>
         </Toolbar>
       </AppBar>
@@ -140,14 +148,35 @@ export default function DefaultTemplate(props) {
         </DrawerHeader>
       
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
+       
+       
+        <List>
+
+          <ListItem disablePadding>
+          <Link href="/">
+            <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+              <ListItemText primary="Home" />
+            </ListItemButton>
+            </Link>
+          </ListItem>
+
+          <ListItem disablePadding>
+          <Link href="/products">
+            <ListItemButton>
+              <ListItemIcon>
+                <LocalOfferIcon />
+              </ListItemIcon>
+              <ListItemText primary="All Product" />
+            </ListItemButton>
+            </Link>
+          </ListItem>
+
+        </List>
+
+
         </List>
       
         <List>
