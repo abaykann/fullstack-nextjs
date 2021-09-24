@@ -120,19 +120,6 @@ export default function PostIndex(props) {
                 </ImageList>
                 </TableCell>
                 <TableCell>
-                    {/* <button onClick={editHandler.bind(this, data.id)}>Edit</button> */}
-                    {/* <Button variant="contained"
-                            color="success"
-                            onClick={deleteHandler.bind(this, data.id)}
-                            startIcon={<EditIcon />}
-                            
-                    >Edit</Button>
-                    <Button variant="contained"
-                            color="error"
-                            onClick={deleteHandler.bind(this, data.id)}
-                            startIcon={<DeleteIcon />}
-                    >Delete</Button> */}
-
                     <ButtonGroup variant="contained">
                         <Button
                             color="success"
@@ -148,9 +135,6 @@ export default function PostIndex(props) {
                             Delete
                         </Button>
                      </ButtonGroup>
-
-
-                    {/* <button onClick={deleteHandler.bind(this, data.id)}>Delete</button> */}
                 </TableCell>
               </TableRow>
             ))}
