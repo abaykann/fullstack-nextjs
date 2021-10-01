@@ -2,17 +2,12 @@ import React, { Fragment } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Box from '@mui/material/Box';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import ValidationSchema from '../../components/validation/productValidation';
-import ReactHookFormSelect from '../../components/dropdown/ReactHookFormSelect';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
@@ -20,13 +15,14 @@ import InputLabel from '@mui/material/InputLabel';
 import { styled } from '@mui/material/styles';
 import { useState } from "react";
 import Avatar from '@mui/material/Avatar';
+import Router from 'next/router';
 
 const CreateProduct = () => {
       const {
         register,
         control,
         handleSubmit,
-        formState: { errors }
+        formState: { errors}
       } = useForm({
         resolver: yupResolver(ValidationSchema)
       });
@@ -62,7 +58,8 @@ const CreateProduct = () => {
           method: "POST",
           body: formData
         }).then(res => res.json())
-        alert(JSON.stringify(res))
+        Router.push('/products');
+        // alert(JSON.stringify(res))
       }
 
       
@@ -171,7 +168,7 @@ const CreateProduct = () => {
                 color="primary"
                 onClick={handleSubmit(onSubmit)}
               >
-                Register
+                Submit
               </Button>
             </Box>
           </Box>
