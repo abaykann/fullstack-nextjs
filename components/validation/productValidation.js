@@ -25,48 +25,25 @@ const ValidationSchema = Yup.object().shape({
       .typeError('Pleace Select One')
       .required("Pleace Select One"),
 
-   
-
-          // picture: Yup
-          // .mixed()
-          // // .typeError('You need to provide a file')
-          // .nullable()
-          // .required()
-          // .test("fileSize", "The file is too large", (value) => {
-          //   return value && value[0].size <= 2000000;
-          // })
-          // .test("type", "We only support jpeg & png File", (value) => {
-          //   // return value && value[0].type === "image/jpeg";
-          //   return value && (
-          //     value[0].type === "image/jpeg" ||
-          //     value[0].type === "image/png" 
-          // );
-          // }),
-
-          // picture: Yup
-          // .mixed()
-          // .required("You need to provide a file")
-          // .test("fileSize", "The file is too large", (value) => {
-          //   return value && value[0].size <= 2000000;
-          // })
-          // .test("type", "We only support jpeg", (value) => {
-          //   return value && value[0].type === "image/jpeg";
-          // }),
-
-          picture: Yup
-          .mixed()
-          .required("You need to provide a file")
-          .test("fileSize", "The file is too large", (value) => {
-            return value && value[0].size <= 200000;
-          })
-          .test("type", "We only support jpeg/png file", (value) => {
-            return value && (
-              value[0].type === "image/jpeg"||
-              value[0].type === "image/png" 
-            );
-          }),
+    picture: Yup
+      .mixed()
+      // .oneOf([])
+      .test("fileSize", "The file is too large,", (value) => {
+        return value && value[0].size <= 200000;
+      })
+      .test("type", "We only support jpeg/png file", (value) => {
+        return value && (
+          value[0].type === "image/jpeg"||
+          value[0].type === "image/jpg"||
+          value[0].type === "image/png" 
+        );
+      }),
           
   });
+
+
+
+
   
 
 export default ValidationSchema
