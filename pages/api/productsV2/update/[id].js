@@ -10,119 +10,156 @@ export const config = {
 };
 
 
-export default async function handler(req, res) {
-    if(req.method !== 'PUT') return res.status(405).end();
+// export default async function handler(req, res) {
+//     if(req.method !== 'PUT') return res.status(405).end();
 
-    // const auth = await authorization(req, res);
-
-//    try{
-//     const { id } = req.query;
-//     const { productName, price, disc, categoryId, imageUrl, pubId, desc } = req.body;
-
-//     let getDisc = disc;
-//     if (!getDisc || getDisc > 100) {
-//         getDisc = 0
-//     }
-//     const getNetPrice = price - (price *(getDisc / 100)); 
-//     // const refId = generateRefId()
-
-    
-    // const update = await db('products')
-    //                         .where({ id })
-    //                         .update({
-    //                             productName,
-    //                             price,
-    //                             disc : getDisc,
-    //                             categoryId,
-    //                             imageUrl,
-    //                             // pubId : refId,
-    //                             desc,
-    //                             netPrice: getNetPrice,
-    //                         });
-    
-//     const updatedData = await db('products').where({ id })
-    
-//     res.status(200);
-//     res.json({
-//         message: 'Product updated successfully',
-//         data: updatedData
-//     });
-
-
-//    }catch (err) {
-//     res.status(500).json({
-//       error: 'something is wrong',
-//       status: 'false',
-//       code: 500
-//     });
-//     console.log(err);
-//   }
-// }
-
-
-
-  const form = new formidable.IncomingForm();
-   form.parse(req, async function (err, fields, files) {
-    // const { id } = req.query;
+//   const form = new formidable.IncomingForm();
+//   const { id } = req.query;
+//   const data = await db('products').where({ id }).first();
+//    form.parse(req, async function (err, fields, files) {
+//     // const { id } = req.query;
      
-    //  if(!files.file)return res.status(405).json({
-    //   error: 'please attach your image',
-    //   status: 'false',
-    //   code: 403
-    //  });
+     
 
-    try {
-      const { id } = req.query;
-      const data = await db('products').where({ id }).first();
-      const destroy = await cloudinary.uploader.destroy([data.pubId]);
-      const result = await cloudinary.uploader.upload(files.file.path, {folder: 'abimanyu-florist'});
-      // const result = await cloudinary.uploader.upload(files.file.path, {folder: 'abimanyu-florist', height: 520, quality: "jpegmini", width: 780, crop: "fill", sign_url: true});
+//     try {
 
-      if (result.public_id) {
+//       if(!files.file)return(
+//         console.log(data.imageUrl, 'akbar')
+        
+        
+//       )
 
-          const { productName, price, disc, categoryId, imageUrl, pubId, desc } = fields;
-          console.log(result)
-          console.log(productName)
 
-          let getDisc = disc;
-          if (!getDisc || getDisc > 100) {
-              getDisc = 0
-        }
+//       const destroy = await cloudinary.uploader.destroy([data.pubId]);
+//       const result = await cloudinary.uploader.upload(files.file.path, {folder: 'abimanyu-florist'});
+//       // const result = await cloudinary.uploader.upload(files.file.path, {folder: 'abimanyu-florist', height: 520, quality: "jpegmini", width: 780, crop: "fill", sign_url: true});
 
-      const getNetPrice = price - (price *(getDisc / 100)); 
-      const update = await db('products').where({ id })
-      .update({
-          productName,
-          price,
-          disc : getDisc,
-          categoryId,
-          imageUrl: result.secure_url,
-          pubId : result.public_id,
-          desc,
-          netPrice: getNetPrice,
+//       if (result.public_id) {
 
-      });
-      const data = await db('products').where({ pubId: result.public_id }) 
+//           const { productName, price, disc, categoryId, imageUrl, pubId, desc } = fields;
+//           console.log(result)
+//           console.log(productName)
 
-      res.status(200);
-          res.json({
-              code: 200,
-              message: 'Product created successfully',
-              data: data
-       });
-    }
+//           let getDisc = disc;
+//           if (!getDisc || getDisc > 100) {
+//               getDisc = 0
+//         }
 
-    }catch (err) {
-      res.status(500).json({
-        error: 'something is wrong',
-        status: 'false',
-        code: 500
-      });
-      console.log(err);
-    }
-  });
+//       const getNetPrice = price - (price *(getDisc / 100)); 
+//       const update = await db('products').where({ id })
+//       .update({
+//           productName,
+//           price,
+//           disc : getDisc,
+//           categoryId,
+//           imageUrl: result.secure_url,
+//           pubId : result.public_id,
+//           desc,
+//           netPrice: getNetPrice,
+
+//       });
+//       const data = await db('products').where({ pubId: result.public_id }) 
+
+//       res.status(200);
+//           res.json({
+//               code: 200,
+//               message: 'Product created successfully',
+//               data: data
+//        });
+//     }
+
+//     }catch (err) {
+//       res.status(500).json({
+//         error: 'something is wrong',
+//         status: 'false',
+//         code: 500
+//       });
+//       console.log(err);
+//     }
+//   });
+// };
+
+
+
+export default async function handler(req, res) {
+  if(req.method !== 'PUT') return res.status(405).end();
+
+const form = new formidable.IncomingForm();
+const { id } = req.query;
+const data = await db('products').where({ id }).first();
+ form.parse(req, async function (err, fields, files) {
+   
+   
+
+  try {
+
+    const { productName, price, disc, categoryId, imageUrl, pubId, desc } = fields;
+
+    let getDisc = disc;
+    if (!getDisc || getDisc > 100) {
+        getDisc = 0
+  }
+    const getNetPrice = price - (price *(getDisc / 100)); 
+    const reqBody = {
+      productName,
+      price,
+      disc : getDisc,
+      categoryId,
+      desc,
+      netPrice: getNetPrice,
+  };
+
+    if(!files.file){
+      console.log(reqBody, 'akbar')
+
+      const updateWithoutImage = await db('products').where({ id })
+        .update({
+          ...reqBody,
+        });
+        res.status(200);
+            res.json({
+                code: 200,
+                message: 'Product updateWithoutImage successfully updated',
+                data: reqBody
+        });
+     }
+
+
+    const destroy = await cloudinary.uploader.destroy([data.pubId]);
+    const result = await cloudinary.uploader.upload(files.file.path, {folder: 'abimanyu-florist'});
+    // const result = await cloudinary.uploader.upload(files.file.path, {folder: 'abimanyu-florist', height: 520, quality: "jpegmini", width: 780, crop: "fill", sign_url: true});
+
+    if (result.public_id) {
+
+    const getNetPrice = price - (price *(getDisc / 100)); 
+    const update = await db('products').where({ id })
+    .update({
+        ...reqBody,
+        imageUrl: result.secure_url,
+        pubId : result.public_id,
+        netPrice: getNetPrice,
+
+    });
+    const data = await db('products').where({ pubId: result.public_id }) 
+
+    res.status(200);
+        res.json({
+            code: 200,
+            message: 'Product updated successfully',
+            data: data
+     });
+  }
+
+  }catch (err) {
+    res.status(500).json({
+      error: 'something is wrong',
+      status: 'false',
+      code: 500
+    });
+    console.log(err);
+  }
+});
 };
-
 
 
 // const { id } = req.query;      
@@ -191,3 +228,7 @@ export default async function handler(req, res) {
 //     }
   // });
 // };
+
+
+
+
