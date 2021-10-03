@@ -1,26 +1,21 @@
 import React, { useState } from 'react';
 import { authPage } from '../../middlewares/authorizationPage';
 import Router from 'next/router';
-import Nav from '../../components/Nav';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import NumberFormat from 'react-number-format';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import constants from '../../common/constants/constants';
+import Navbar from '../../components/template/Navbar';
+import {Table,TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, ImageList,
+        ImageListItem, Button, Stack} from '@mui/material';
+
+
 
 export async function getStaticProps(ctx) {
     // const { token } = await authPage(ctx);
+   
 
-    const postReq = await fetch('http://localhost:3000/api/productsV2', {
+    const postReq = await fetch(`${constants.BASE_URL}/api/productsV2`, {
         // headers: {
         //     'Authorization': 'Bearer ' + token
         // }
@@ -54,7 +49,7 @@ export default function PostIndex(props) {
             //     }
             // });
 
-            const deleteProduct = await fetch('http://localhost:3000/api/productsV2/delete/' + id, {
+            const deleteProduct = await fetch(`${constants.BASE_URL}/api/productsV2/detail` + id, {
                 method: 'DELETE',
               
             });
@@ -72,11 +67,14 @@ export default function PostIndex(props) {
     }
 
     function editHandler(id) {
-        Router.push('/products/edit/' + id);
+        Router.push(`${constants.BASE_URL}/products/edit/` + id);
     }
 
     return (
-        <TableContainer component={Paper}>
+      
+        <div>
+          <Navbar />
+          <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
@@ -120,7 +118,7 @@ export default function PostIndex(props) {
                 </ImageList>
                 </TableCell>
                 <TableCell>
-                    <ButtonGroup variant="contained">
+                    {/* <ButtonGroup variant="contained">
                         <Button
                             color="success"
                             onClick={editHandler.bind(this, data.id)}
@@ -134,12 +132,32 @@ export default function PostIndex(props) {
                             startIcon={<DeleteIcon />}>          
                             Delete
                         </Button>
-                     </ButtonGroup>
+                     </ButtonGroup> */}
+
+                  <Stack direction="row"  spacing={2}>
+                    <Button
+                        variant="contained"
+                        color="success"
+                        onClick={editHandler.bind(this, data.id)}
+                        startIcon={<EditIcon />}>          
+                        Edit
+                    </Button>
+
+                    <Button
+                        variant="contained"
+                        color="error"
+                        onClick={deleteHandler.bind(this, data.id)}
+                        startIcon={<DeleteIcon />}>          
+                        Delete
+                    </Button>
+                  </Stack>
+
                 </TableCell>
               </TableRow>
-            ))}
+             ))}
           </TableBody>
         </Table>
       </TableContainer>
+      </div>
     );
 }
