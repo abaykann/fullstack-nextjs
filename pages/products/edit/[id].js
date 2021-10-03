@@ -16,9 +16,10 @@ import { styled } from '@mui/material/styles';
 import { useState } from "react";
 import Avatar from '@mui/material/Avatar';
 import Router from 'next/router';
+import constants from '../../../common/constants/constants';
 
 export const getStaticPaths = async () => {
-    const res = await fetch('http://localhost:3000/api/productsV2/');
+    const res = await fetch(`${constants.BASE_URL}/api/productsV2/`);
     const data = await res.json();
   
     // map data to an array of path objects with params (id)
@@ -36,7 +37,7 @@ export const getStaticPaths = async () => {
   
   export const getStaticProps = async (context) => {
     const id = context.params.id;
-    const res = await fetch('http://localhost:3000/api/productsV2/detail/' + id);
+    const res = await fetch(`${constants.BASE_URL}/api/productsV2/detail/` + id);
 
     const data = await res.json();
   
@@ -85,7 +86,7 @@ export const getStaticPaths = async () => {
         formData.append("discount", data.discount)
         formData.append("categoryId", data.categoryId)
     
-        const res = await fetch('http://localhost:3000/api/productsV2/update/' + productData.id, {
+        const res = await fetch(`${constants.BASE_URL}/api/productsV2/update` + productData.id, {
           method: "PUT",
           body: formData
         }).then(res => res.json())
