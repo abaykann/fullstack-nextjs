@@ -16,6 +16,7 @@ import { styled } from '@mui/material/styles';
 import { useState } from "react";
 import Avatar from '@mui/material/Avatar';
 import Router from 'next/router';
+import constants from '../../common/constants/constants';
 
 const CreateProduct = () => {
       const {
@@ -54,7 +55,7 @@ const CreateProduct = () => {
         formData.append("discount", data.discount)
         formData.append("categoryId", data.categoryId)
     
-        const res = await fetch("http://localhost:3000/api/productsV2/create", {
+        const res = await fetch(`${constants.BASE_URL}/api/productsV2/create`, {
           method: "POST",
           body: formData
         }).then(res => res.json())
