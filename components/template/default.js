@@ -14,14 +14,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import theme from '../../src/theme'
 import Link from 'next/link'
 import ListItemButton from '@mui/material/ListItemButton';
 import HomeIcon from '@mui/icons-material/Home';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-
-import DraftsIcon from '@mui/icons-material/Drafts';
-
 
 const drawerWidth = 280;
 
@@ -180,14 +176,59 @@ export default function DefaultTemplate(props) {
         </List>
       
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {/* {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
+          ))} */}
+          <ListItem disablePadding>
+          <Link href="/products/category/1">
+            <ListItemButton>
+              <ListItemIcon>
+                <LocalOfferIcon />
+              </ListItemIcon>
+              <ListItemText primary="Bunga Papan" />
+            </ListItemButton>
+            </Link>
+          </ListItem>
+
+          <ListItem disablePadding>
+          <Link href="/products/category/2">
+            <ListItemButton>
+              <ListItemIcon>
+                <LocalOfferIcon />
+              </ListItemIcon>
+              <ListItemText primary="Bunga Meja" />
+            </ListItemButton>
+            </Link>
+          </ListItem>
+
+          <ListItem disablePadding>
+          <Link href="/products/category/3">
+            <ListItemButton>
+              <ListItemIcon>
+                <LocalOfferIcon />
+              </ListItemIcon>
+              <ListItemText primary="Hand Buket" />
+            </ListItemButton>
+            </Link>
+          </ListItem>
+
+          <ListItem disablePadding>
+          <Link href="/products/category/4">
+            <ListItemButton>
+              <ListItemIcon>
+                <LocalOfferIcon />
+              </ListItemIcon>
+              <ListItemText primary="Standing Flower" />
+            </ListItemButton>
+            </Link>
+          </ListItem>
+
+
         </List>
       </Drawer>         
       <Box component="main" sx={{ flexGrow: 1, p: 7 }}>
