@@ -83,7 +83,7 @@ export const config = {
 
 export default async function handler(req, res) {
   if(req.method !== 'PUT') return res.status(405).end();
-
+  const auth = await authorization(req, res);
 const form = new formidable.IncomingForm();
 const { id } = req.query;
 const data = await db('products').where({ id }).first();
