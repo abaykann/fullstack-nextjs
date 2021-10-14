@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
     const { id } = req.query;
 
-    // const auth = await authorization(req, res);
+    const auth = await authorization(req, res);
     
     const data = await db('products').where({ id: id }) 
     if(!data) return res.status(404).end();
