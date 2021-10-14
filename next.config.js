@@ -1,5 +1,6 @@
 // next.config.js
 module.exports = {
+  basePath: '/docs',
     async headers() {
       return [
         {
