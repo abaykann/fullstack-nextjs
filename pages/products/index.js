@@ -11,21 +11,21 @@ import {Table,TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, 
 
 
 
-export async function getStaticProps(ctx) {
-    // const { token } = await authPage(ctx);
-   
+export async function getServerSideProps(ctx) {
+    const { token } = await authPage(ctx);
+    console.log(token)
 
-    const postReq = await fetch(`${constants.BASE_URL}/api/productsV2`, {
-        // headers: {
-        //     'Authorization': 'Bearer ' + token
-        // }
+    const postReq = await fetch('http://localhost:3000/api/productsV2',{
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
     });
 
     const products = await postReq.json();
 
     return { 
         props: {
-            // token,
+            token,
             products: products.data
         }
     }
@@ -37,7 +37,7 @@ export default function PostIndex(props) {
     async function deleteHandler(id, e) {
         e.preventDefault();
 
-        // const { token } = props;
+        const { token } = props;
 
         const ask = confirm('Apakah data ini akan dihapus?');
 
@@ -49,8 +49,11 @@ export default function PostIndex(props) {
             //     }
             // });
 
-            const deleteProduct = await fetch(`${constants.BASE_URL}/api/productsV2/detail` + id, {
+            const deleteProduct = await fetch('/api/productsV2/delete/' + id, {
                 method: 'DELETE',
+                headers: {
+                  'Authorization': 'Bearer ' + token
+              }
               
             });
 
@@ -67,7 +70,7 @@ export default function PostIndex(props) {
     }
 
     function editHandler(id) {
-        Router.push(`${constants.BASE_URL}/products/edit/` + id);
+        Router.push('/products/edit/' + id);
     }
 
     return (
@@ -118,22 +121,6 @@ export default function PostIndex(props) {
                 </ImageList>
                 </TableCell>
                 <TableCell>
-                    {/* <ButtonGroup variant="contained">
-                        <Button
-                            color="success"
-                            onClick={editHandler.bind(this, data.id)}
-                            startIcon={<EditIcon />}>          
-                            Edit
-                        </Button>
-
-                        <Button
-                            color="error"
-                            onClick={deleteHandler.bind(this, data.id)}
-                            startIcon={<DeleteIcon />}>          
-                            Delete
-                        </Button>
-                     </ButtonGroup> */}
-
                   <Stack direction="row"  spacing={2}>
                     <Button
                         variant="contained"
