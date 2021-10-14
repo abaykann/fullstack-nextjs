@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start && knex migrate:latest",
     "knex": "knex"
   },
   "dependencies": {
@@ -40,6 +40,5 @@
     "react-hook-form": "^7.15.4",
     "react-number-format": "^4.7.3",
     "yup": "^0.32.9"
-  },
-  "cacheDirectories": [".next/cache"]
+  }
 }
