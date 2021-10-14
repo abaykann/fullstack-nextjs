@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start && knex migrate:latest",
-    "knex": "knex"
+    "knex": "knex",
+    "deploy": "npm run build && npm run export"
   },
   "dependencies": {
     "@emotion/cache": "^11.4.0",
