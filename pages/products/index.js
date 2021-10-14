@@ -49,7 +49,7 @@ export default function PostIndex(props) {
             //     }
             // });
 
-            const deleteProduct = await fetch('/api/productsV2/delete/' + id, {
+            const deleteProduct = await fetch(`${constants.BASE_URL}/api/productsV2/delete/` + id, {
                 method: 'DELETE',
                 headers: {
                   'Authorization': 'Bearer ' + token
