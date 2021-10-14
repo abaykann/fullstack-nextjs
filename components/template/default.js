@@ -18,6 +18,11 @@ import Link from 'next/link'
 import ListItemButton from '@mui/material/ListItemButton';
 import HomeIcon from '@mui/icons-material/Home';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import Button from '@mui/material/Button';
+
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Logout from './logout';
 
 const drawerWidth = 280;
 
@@ -90,7 +95,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function DefaultTemplate(props) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -134,17 +139,20 @@ export default function DefaultTemplate(props) {
           <Typography variant="h6" noWrap component="div">
             Abimayu Florist CMS
           </Typography>
+          
+          
         </Toolbar>
       </AppBar>
 
 
       
       <Drawer variant="permanent" primary open={open}>
+        
         <DrawerHeader>
         </DrawerHeader>
       
         <List>
-       
+
        
         <List>
 
@@ -176,14 +184,6 @@ export default function DefaultTemplate(props) {
         </List>
       
         <List>
-          {/* {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
           <ListItem disablePadding>
           <Link href="/products/category/1">
             <ListItemButton>
@@ -229,7 +229,22 @@ export default function DefaultTemplate(props) {
           </ListItem>
 
 
+        
         </List>
+
+        <List>
+          <ListItem disablePadding>
+          {/* <Link href="/products/category/1"> */}
+            {/* <ListItemButton>
+              <ListItemIcon>
+                <LocalOfferIcon />
+              </ListItemIcon>
+              <ListItemText primary="Bunga Papan" />
+            </ListItemButton> */}
+            <Logout/>
+            {/* </Link> */}
+          </ListItem>
+          </List>
       </Drawer>         
       <Box component="main" sx={{ flexGrow: 1, p: 7 }}>
         <DrawerHeader />
